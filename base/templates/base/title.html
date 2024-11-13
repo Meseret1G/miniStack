@@ -1,0 +1,18 @@
+<nav class="navbar navbar-expand-lg background-color: rgb(71 85 105)">
+  <div class="container-fluid" style="margin-left: -3rem">
+    <ul class="navbar-nav" style="margin-left: -3.5rem">
+      <li class="nav-item px-5" style="padding: 0 20px">
+        <a href="{% url 'home'%}">
+          <div class="inner-container py-3 hover mt-5 px-5" style="padding: 10px 10px; background-color: rgb(71 85 105)">All</div></a
+        >
+        <div class="outer-container shadow" style="width: 100%">
+          {% for title in titles %}
+          <a href="{% url 'home'%}?q={{title.name}}">
+            <div class="inner-container py-3 hover px-5" style="text-decoration: none; color: white">{{title.name}}</div>
+          </a>
+          {% endfor %}
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>

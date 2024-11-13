@@ -1,0 +1,35 @@
+{% extends 'main.html' %} {% block content %} {% if page == 'login' %}
+<div class="mx-auto" style="margin: auto; width: 50%; padding: 5rem 0; background-color: rgb(71, 85, 105)">
+  <div>
+    <form class="my-3 ms-5" method="POST" action="">
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="username">Username:</label>
+        <input type="text" class="form-control" name="username" placeholder="Username" required />
+      </div>
+      <div class="mb-3">
+        <label for="password">Password:</label>
+        <input type="password" class="form-control" name="password" placeholder="Password" required />
+      </div>
+      <div class="mb-3">
+        <input type="submit" class="btn btn-primary" value="Login" />
+      </div>
+      <p class="my-3">Haven't signed up yet?</p>
+      <a class="btn btn-outline-dark" href="{% url 'register' %}">Sign Up</a>
+    </form>
+  </div>
+</div>
+{% else %}
+<div class="mx-auto" style="margin: auto; width: 50%; padding: 5rem 0; background-color: rgb(71, 85, 105)">
+  <div>
+    <form class="my-3 ms-5" method="POST" action="">
+      {% csrf_token %} {{ form.as_p }}
+      <div class="mb-3">
+        <input class="btn btn-success" type="submit" value="Register" />
+      </div>
+      <p class="my-3">Already signed up?</p>
+      <a class="btn btn-outline-dark" href="{% url 'login' %}">Login</a>
+    </form>
+  </div>
+</div>
+{% endif %} {% endblock content %}

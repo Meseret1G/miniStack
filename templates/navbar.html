@@ -1,0 +1,20 @@
+<div class="container-fluid d-flex justify-content-between">
+  <form method="GET" action="" class="d-flex ms-3" role="search">
+    <input
+      class="form-control custom-search-input"
+      type="text"
+      name="q"
+      placeholder="Search..."
+      aria-label="Search"
+      style="width: 100%; padding: 12px 20px; border-radius: 30px; border: 1px solid #ccc" />
+  </form>
+
+  <div class="d-flex align-items-center ms-auto">
+    {% if request.user.is_authenticated %} {% csrf_token %}
+    <p class="mb-0 me-3 fs-5 fst-italic" style="font-family: 'Merriweather', serif">Hello, {{request.user}}</p>
+    <a class="btn btn-outline-secondary" href="{% url 'logout' %}">Logout</a>
+    {% else %}
+    <a href="{% url 'login' %}" class="btn btn-outline-secondary">Login</a>
+    {% endif %}
+  </div>
+</div>

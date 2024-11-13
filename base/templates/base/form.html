@@ -1,0 +1,31 @@
+{% extends 'main.html'%} {% block content %}
+
+<div class="shadow" style="margin: auto; width: 50%; padding: 10px; background-color: rgb(71 85 105)">
+  <form method="POST" action="" style="font-family: 'Merriweather', serif">
+    {% csrf_token %}
+    <div class="my-3 ms-5">
+      <label>Topic</label>
+
+      {% comment %} to only 3 of them {% endcomment %}
+      <input class="mx-2" required type="text" name="topic" value="{{post.title.name}}" list="title-list" />
+
+      <datalist id="title-list">
+        <select id="post-topic">
+          {% for title in title%}
+          <option value="{{title.name}}">{{title.name}}</option>
+          {% endfor %}
+        </select>
+      </datalist>
+    </div>
+    <div class="my-3 ms-5">
+      <label>Title</label>
+      <span class="mx-2" style="width: 100%; padding: 12px 20px; border-radius: 30px; border: none; background-color: white">{{form.name}}</span>
+    </div>
+    <div class="my-3 ms-5">
+      <label>Description</label>
+      <div>{{form.description}}</div>
+    </div>
+    <input class="mx-5" type="submit" value="Submit" class="btn btn-outline-secondary" style="font-weight: bold" />
+  </form>
+</div>
+{% endblock content %}

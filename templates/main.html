@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>miniStack</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous" />
+
+    <style>
+      .fixed-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
+      }
+      a:link {
+        text-decoration: none;
+      }
+
+      /* WebKit browsers (Chrome, Safari) */
+      ::-webkit-scrollbar {
+        width: 2em; /* Width of the scrollbar */
+        height: 2em; /* Height of the scrollbar (for horizontal scrollbar) */
+      }
+
+      ::-webkit-scrollbar-track {
+        background: rgb(46, 16, 101); /* Track background */
+        border-radius: 100vw; /* Rounded corners for the track */
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background-color:rgb(71 85 105); /* Thumb color */
+        border-radius: 100vw; /* Rounded corners for the thumb */
+        border: 0.25em solid rgb(46, 16, 101); /* Border around the thumb */
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background:rgb(71 85 105 0.8); /* Thumb color on hover (slightly lighter) */
+      }
+
+      /* Firefox */
+      * {
+        scrollbar-width: thin; /* Set scrollbar width */
+        scrollbar-color: rgb(71 85 105); rgb(46, 16, 101); /* Thumb and track colors */
+      }
+
+      /* For Internet Explorer and Edge (Limited support) */
+      @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+        ::-ms-scrollbar {
+          width: 2em; /* Width of the scrollbar */
+          height: 2em; /* Height of the scrollbar (for horizontal scrollbar) */
+        }
+
+        ::-ms-scrollbar-track {
+          background: rgb(46, 16, 101); /* Track background */
+        }
+
+        ::-ms-scrollbar-thumb {
+          background: rgb(71 85 105);/* Thumb color */
+          border: 0.25em solid rgb(46, 16, 101); /* Border around the thumb */
+        }
+        input.no-cursor {
+          cursor: default; /* Remove the text cursor */
+          background-color: #f5f5f5; /* Optional: Makes it clear it's non-editable */
+          color: #555; /* Optional: Change text color to show it's non-editable */
+        }
+
+        /* Optional: Remove the outline when focusing on the 'user' field */
+        input.no-cursor:focus {
+          outline: none;
+        }
+      }
+    </style>
+  </head>
+
+  <h1 class="card text-white mb-3 py-3 px-2 fixed-header" style="background-color: rgb(71 85 105)">miniStack</h1>
+  <body class="text-white mb-3" style="margin-top: 6rem; z-index: 0; background-color: rgb(30 41 59)">
+    {% include 'navbar.html' %} {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+      <li>{{message}}</li>
+      {% endfor%}
+    </ul>
+    {% endif%} {% block content %} {% endblock %}
+  </body>
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</html>

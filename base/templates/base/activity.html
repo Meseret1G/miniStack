@@ -1,0 +1,28 @@
+<div class="container my-5 shadow" style="max-height: 400px; background-color: rgb(71, 85, 105); overflow-y: auto; margin-left: 2rem">
+  <!-- Header section -->
+
+  <!-- Comments section -->
+  <div class="comments-list">
+    <div class="py-3 text-white" style="position: sticky; top: 0; background-color: rgb(71 85 105); z-index: 1000; width: 100%">
+      <h3>Recent Activity</h3>
+    </div>
+    {% for comment in comments %}
+    <div class="comment-item px-5 py-3 shadow my-2 bg-dark text-light rounded">
+      <small>
+        <a href="{% url 'userprofile' comment.user.id %}" style="color: lightblue; font-style: italic"> @{{ comment.user }} </a>
+        {{ comment.created|timesince }} ago
+      </small>
+      <small style="font-style: italic">, replied to "{{ comment.post }}"</small>
+
+      <!-- Comment body -->
+      <p class="px-5">{{ comment.text }}</p>
+
+      <!-- Delete button (if current user is the comment owner) -->
+      {% if request.user == comment.user %}
+      <a href="{% url 'deletecomment' comment.id %}" class="btn btn-danger btn-sm">Delete</a>
+      {% endif %}
+    </div>
+    <hr />
+    {% endfor %}
+  </div>
+</div>

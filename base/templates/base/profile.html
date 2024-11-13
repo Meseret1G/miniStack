@@ -1,0 +1,24 @@
+{% extends 'main.html'%} {% block content %}
+
+<style>
+  .container {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+  }
+  body {
+    background-color: #070738;
+    color: whitesmoke;
+  }
+</style>
+<h1 class="fst-italic ms-4" style="font-size: 3rem; font-family: 'Merriweather', serif">{{user.username}}</h1>
+<small class="ms-4 fst-italic shadow" style="padding: 12px 20px; border-radius: 30px; border: 1px solid #070738">@{{user.username}}</small>
+
+<div class="container">
+  {% comment %}
+  <div>{% include 'base/title.html'%}</div>
+  {% endcomment %}
+
+  <div>{% include 'base/dashboard.html' %}</div>
+  <div>{% include 'base/activity.html'%}</div>
+</div>
+{% endblock %}

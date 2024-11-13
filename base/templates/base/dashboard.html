@@ -1,0 +1,29 @@
+<div class="mx-3" style="max-height: 400px; overflow-y: auto">
+  <div class="mx-3">
+    {% for post in posts%}
+    <div class="py-2 px-3">
+      <div class="py-3 px-3 shadow" style="border-radius: 5px; background-color: rgb(30 41 59)">
+        <div style="margin-bottom: -1em" class="d-flex justify-content-between">
+          <div>
+            <a href="{% url 'userprofile' post.user.id %}" class="my-2">@{{post.user.username}}</a>
+          </div>
+          <div>
+            {% if request.user == post.user %}
+            <a href="{% url 'editpost'  post.id %}" class="btn btn-outline-secondary my-2">Edit</a>
+            <a href="{% url 'deletepost' post.id%}" class="btn btn-outline-secondary my-2">Delete</a>
+            {% endif%}
+          </div>
+        </div>
+        <hr />
+
+        <div>
+          <h5><a class="py-5" href="{% url 'post' post.id %}">{{post.name}}</a></h5>
+        </div>
+        <hr />
+
+        <small class="my-2 text-secondary text-sm-end">{{post.title}}</small>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>

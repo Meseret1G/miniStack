@@ -1,0 +1,126 @@
+{% extends 'main.html' %} {% block content %}
+
+<style>
+  body {
+    background-color: #070738;
+    color: whitesmoke;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container {
+    display: flex;
+    flex: 1;
+    margin: 1rem;
+    overflow: hidden;
+  }
+
+  .content {
+    flex: 3;
+    padding-right: 1rem;
+    overflow-y: auto;
+  }
+
+  .wrapper {
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    max-height: 60vh;
+    overflow-y: auto;
+  }
+
+  .participants {
+    max-height: 400px;
+    overflow-y: auto;
+    flex: 1;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+  }
+
+  .participants h3 {
+    margin-top: 0;
+  }
+
+  .participant {
+    padding: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    transition: background-color 0.3s;
+  }
+
+  .participant:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .comment {
+    position: fixed;
+    bottom: 0;
+    left: 1rem;
+    right: 27.5rem;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    z-index: 1000;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #1a1a4d;
+    color: white;
+  }
+
+  input[type="text"]::placeholder {
+    color: #ccc;
+  }
+
+  input[type="text"]:focus {
+    outline: none;
+    background-color: #2a2a7d;
+  }
+</style>
+
+<div class="container">
+  <div class="content">
+    <h2>{{ post.name }}</h2>
+    <p>{{ post.description }}</p>
+    <div class="wrapper">
+      <h3>Conversations</h3>
+      <hr />
+
+      {% for comment in comments %}
+      <div>
+        {% if request.user == comment.user %}
+        <a href="{% url 'deletecomment' comment.id %}">Delete</a>
+        {% endif %}
+        <small>@{{ comment.user }} {{ comment.created|timesince }} ago</small>
+        <p>{{ comment.body }}</p>
+        <hr />
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="participants">
+    <h3>Participants</h3>
+    <hr />
+    {% for participant in participants %}
+    <div class="participant">
+      <p>@{{ participant.username }}</p>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% if request.user.is_authenticated %}
+<div class="comment">
+  <form method="POST" action="">
+    {% csrf_token %}
+    <input type="text" name="body" placeholder="Write your comment here..." />
+  </form>
+</div>
+{% endif %} {% endblock %}
